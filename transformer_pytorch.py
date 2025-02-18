@@ -17,7 +17,7 @@ class PositionEncoding(nn.Module):
 
         pe = torch.zeros(max_len, d_model)
 
-        position = torch.arange(start=0, end=max_len, step=1).float().unsquueze(1)
+        position = torch.arange(start=0, end=max_len, step=1).float().unsqueeze(1)
         embedding_index = torch.arange(start=0, end=d_model, step=2).float()
 
         div_term = 1/torch.tensor(10000.0)**(embedding_index / d_model)
@@ -148,7 +148,7 @@ if __name__ == '__main__':
     model = DecoderOnlyTransformer(num_tokens=len(token_to_id), d_model=2, max_len=6)
 
     trainer = L.Trainer(max_epochs=30)
-    trainer.fir(model, train_dataloader=dataloader)
+    trainer.fit(model, train_dataloader=dataloader)
 
     model_input = torch.tensor([token_to_id['what'],
                         token_to_id['is'],
